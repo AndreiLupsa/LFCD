@@ -1,0 +1,7 @@
+p3: patrat perfect
+rational n1
+daca(radical(n1)=(intreg)radical(n1))
+    afiseaza("Este patrat perfect")
+altfel
+    afiseaza("Nu este")
+

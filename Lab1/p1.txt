@@ -1,0 +1,12 @@
+p1: cel mai mare 3 nr
+
+intreg a,b,c
+citeste(a)
+citeste(b)
+citeste(c)
+daca(a >= b si a >= c)
+    afiseaza(a)
+daca(b >= a si b >= c)
+    afiseaza (b) 
+daca(c >= a si c >= b)
+    afiseaza(c)

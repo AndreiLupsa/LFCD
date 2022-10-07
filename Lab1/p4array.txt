@@ -1,0 +1,11 @@
+
+p array: max din sir
+
+intregSir sir
+intreg max,i
+max <==MINF
+sir<=={2,5,10,24,1,30}
+pentru(i<==0,i<sir.lungime(),sir++):
+    daca(sir[i]>max)
+        max<==sir[i]
+afiseaza(max)
