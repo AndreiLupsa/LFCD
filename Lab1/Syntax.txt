@@ -1,0 +1,42 @@
+2.2 Syntax:
+        The words - predefined tokens are specified between " and ":  
+  
+a) Sintactical rules:
+    program::= stmtlist
+
+    declaration ::= type identifier
+
+    type::="caracter"|"intreg"|"mare"|"array"
+
+    declist ::= declaration | declaration {"," identifier}
+
+    iostmt ::= "citeste" | "afiseaza" "(" IDENTIFIER ")"
+
+    assignstmt ::= IDENTIFIER "<=" expression
+
+    stmtlist::=stmt | stmt /n TAB stmtlist
+
+    stmt ::= simplstmt | structstmt
+
+    simplstmt ::= assignstmt | iostmt
+
+    structstmt ::= ifstmt | whilestmt
+
+    ifstmt ::= "daca(" condition ")"\n TAB stmtlist ["altfel" stmtlist]
+
+    whilestmt ::= "cat(" condition ")"\n TAB "executa" stmtlist
+
+    condition ::= expression RELATION expression | condition {("si"|"sau") condition}
+
+    expression ::= expression "+" term | term
+
+    term ::= term "*" factor | factor
+    
+    factor ::= "(" expression ")" | IDENTIFIER
+
+Conditions:
+i) Identifiers: no more than 256 characters
+ii)Constant for intreg: 10 digits
+                intreg_virgula:10digits , 5 digits
+
+

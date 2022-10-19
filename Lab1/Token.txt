@@ -1,0 +1,62 @@
+Token type	code
+identifier	0
+constant	1
+        [	2
+        ]	3
+        {	4
+        }	5
+        ;	6
+        :	7
+        ,	9
+        <	10
+        <=	11
+        >	12
+        >=	13
+        ++	14
+        --	15
+        ==	16
+        !=	17
+        ? :	18
+        !	19
+        &&	20
+        ||	21
+        <<	22
+        >>	23
+        ~	24
+        &	25
+        |	26
+        ^	27
+        =	28
+        +	29
+        -	30
+        *	31
+        %	32
+        /	33
+    opreste 34
+   caracter 35
+   constant 36
+    executa 37
+    pentru  38
+   afiseaza 39
+    daca    40
+    intreg  41
+    mare    42
+   intoarce 43
+    mic     44
+    nimic   45
+    cat     46
+    0       47
+    1       48
+    2       49
+    3       50
+    4       51
+    5       52
+    6       53
+    7       54
+    8       55
+    9       56
+    array   57
+    intreg  58
+    
+    
+
