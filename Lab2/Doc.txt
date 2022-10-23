@@ -1,0 +1,7 @@
+There are to classes HashTable which represents the data structure and SymbolTabel which acts as a controller for the HashTable
+Hash Table methods:
+    - myhash: the hashfunction I used for hashing the keys
+    - add: add mapping to a bucket which has it's index the hashed key
+    - get: get a mapping from the hashtable using the key
+    - delete: delete a mapping from the hashtable using the key
+In asserting file I check if add/delete act as intended

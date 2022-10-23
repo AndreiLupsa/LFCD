@@ -43,9 +43,9 @@ Language Specification:
          2.caracter:
              caracter = 'letter'|'digit'
          3.array:
-	    array = "[" [intreg|caracter]  "]" |  "[" intreg|caracter {"," intreg|caracter}  "]"
+	    array = "[" anytype "]" |  "[" anytype {"," anytype}  "]"
         ]
-         
+        anytype::=caracter|array|intreg
 b) lexical rules:
  IDENTIFIER = letter | letter{letter|digit}
      letter = "A" | "B" |...| "Z" | "a" | "b" | ... | "z"
