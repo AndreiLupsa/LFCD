@@ -2,7 +2,7 @@
         The words - predefined tokens are specified between " and ":  
   
 a) Sintactical rules:
-    program::= stmtlist
+    program::= "incepe" cmpdstmt
 
     declaration ::= type identifier
 
@@ -14,17 +14,17 @@ a) Sintactical rules:
 
     assignstmt ::= IDENTIFIER "<=" expression
 
-    stmtlist::=stmt | stmt /n TAB stmtlist
+    stmtlist::=stmt | stmt ; stmtlist
 
     stmt ::= simplstmt | structstmt
 
     simplstmt ::= assignstmt | iostmt
 
-    structstmt ::= ifstmt | whilestmt
+    structstmt ::= ifstmt | whilestmt | cmpdstmt
 
-    ifstmt ::= "daca(" condition ")"\n TAB stmtlist ["altfel" stmtlist]
+    ifstmt ::= "daca(" condition ")" stmt ["else" stmt]
 
-    whilestmt ::= "cat(" condition ")"\n TAB "executa" stmtlist
+    whilestmt ::= "cat(" condition ")" stmt
 
     condition ::= expression RELATION expression | condition {("si"|"sau") condition}
 

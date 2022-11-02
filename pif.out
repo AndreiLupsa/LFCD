@@ -1,0 +1,34 @@
+incepe
+{
+rational
+n1
+;
+daca
+(
+radical
+(
+)
+=
+intreg
+(
+radical
+(
+)
+)
+)
+{
+afiseaza
+(
+"Este patrat perfect"
+)
+;
+}
+altfel
+{
+afiseaza
+(
+"Nu este"
+)
+;
+}
+}
