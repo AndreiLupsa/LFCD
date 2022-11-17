@@ -1,6 +1,8 @@
 from SymbolTable import SymbolTable
 import re
 import sys
+from Utils import Utils
+
 reserved_words = ["incepe", "intreg", "citeste", "daca", "si", "afiseaza","radical","rational"]
 reserved_ops = [",","!=" , "<", "<=", ">", ">=","<==","[", "]", "{", "}", ";", ":", "(", ")","%","+","/","="]
 
@@ -19,19 +21,22 @@ class PIF:
     def tokens(self):
         return list(map(lambda x: x[0], self.__data))
 
-def is_constant_or_identifier(token):
-    try:
-        int(token)
-        return re.match(r"^([+-][^0]|[0-9])", token)
-    except:
-        return re.match(r"^[0-9]", token) is None and \
-                (re.match(r'^".+"$', token) is not None \
-                    or re.match(r"^`.+`$", token) is not None \
-                    or re.match(r"^'.'$", token) is not None \
-                    or re.match(r'^[^`\'"]+$', token))
-    return True
+def is_constant_or_identifier(token,finite_automata):
+    return finite_automata.isAccepted(token)
 
-def lexical_analyser(path):
+    # def is_constant_or_identifier(token,finite_automata):
+    # try:
+    #     int(token)
+    #     return re.match(r"^([+-][^0]|[0-9])", token)
+    # except:
+    #     return re.match(r"^[0-9]", token) is None and \
+    #             (re.match(r'^".+"$', token) is not None \
+    #                 or re.match(r"^`.+`$", token) is not None \
+    #                 or re.match(r"^'.'$", token) is not None \
+    #                 or re.match(r'^[^`\'"]+$', token))
+    # return True
+
+def lexical_analyser(path,finite_automata):
     pif = PIF()
     st = SymbolTable(100)
     with open(path) as f:
@@ -57,7 +62,7 @@ def lexical_analyser(path):
             for token in split:
                 if token in reserved_words or token in reserved_ops:
                     pif[token] = -1
-                elif is_constant_or_identifier(token):
+                elif is_constant_or_identifier(token,finite_automata):
                     st.add(token,i)
                     pif['id'] = st.get(token)
                     i+=1
@@ -70,9 +75,8 @@ def lexical_analyser(path):
 
 
 if __name__ == "__main__":
-    st, pif = lexical_analyser('C:\LFCD\Lab3\p1.txt')
-    print(st, "\n")
-    print(pif)
+    finite_automata = Utils.readFromFile('C:\LFCD\Lab4\FAInt.in')
+    st, pif = lexical_analyser('C:\LFCD\Lab3\p1.txt',finite_automata)
 
     with open("st.out", "w+") as f:
         f.write(str(st))

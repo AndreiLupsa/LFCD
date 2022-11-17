@@ -31,7 +31,7 @@ Language Specification:
 		while -> cat
       b.identifiers
         -a sequence of letters and digits, such that the first charater is a letter; the rule is:
-            identifier = ["_"]["_"]letter[{letter | digit}]
+            identifier = letter[{letter | digit}]
             letter = "A" | "B" | . ..| "Z" | "a" | "b" | ... | "z"
             digit="0"|...|"9"
       c.constants

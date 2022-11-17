@@ -1,0 +1,10 @@
+intregSir sir
+intreg max,i
+max <==MINF
+caracter a=';
+sir<=={2,5,10,24,1,30}
+
+ptr(i<==0,i<sir.lungime(),sir++)
+    daca(sir[i>max)
+        max<==sir[i]
+afiseaza(max)

@@ -1,0 +1,15 @@
+incepe{
+intreg n, i, m<==0, stop<==0  ;
+afiseaza("Da un nr:");
+citeste(n);  
+m<==n/2; 
+pentru(i<==2, i <= m, i++){  
+    daca(n % i = 0)  {
+        afiseaza("nr nu-i prim",1);  
+        stop<==1;
+        opreste;
+        } 
+    }    
+daca (stop=0)  {
+    afiseaza("nr prim") }
+}

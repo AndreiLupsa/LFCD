@@ -1,0 +1,5 @@
+There is a new Class PIF where we store all the identifiers with their position in the ST ,reserved words and separators
+To do that we have to determine what is an identifier/reserved word/special character and I did that through regular expression
+I read my code line by line and split it accordingly to my language,then going through every token ,
+if it is a reserved word/operand it gets corresponding value -1 ,else if it is a constant/identifier it gets corresponding value (array nr,array index)
+and gets added to the pif. In case it is not seen as one of the above we get an error

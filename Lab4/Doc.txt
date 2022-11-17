@@ -1,0 +1,17 @@
+FiniteAutomata
+
+The finite automata class is a finite automation which implements the operations on an automaton read from a file.
+The file contains the states/alphabet/transitions/initial states and final states and they are kept in separate lists
+
+Operations:
+init : creating the lists after reading the FA file
+isDfa : checking if the final automata is deterministic
+isAccepted : returns wheter the input sequence is accepted by the finite automata
+
+used:
+non_zero_digit = "1" |...| "9"
+zero_digit = "0" 
+sign = ["+" | "-"]
+intreg = zero_digit | sign digit {(zero_digit | digit)}
+letter= a|b|..|z|A|..|z
+character=letter|digit
