@@ -26,5 +26,4 @@ class Utils:
                     transactions[(source,route)].append(destination)
                 else:
                     transactions[(source, route)] = [destination]
-
-            return FiniteAutomata(states, alphabet, initialState, finals, transactions)
+            return FiniteAutomata(states, alphabet, initialState[0], finals, transactions)

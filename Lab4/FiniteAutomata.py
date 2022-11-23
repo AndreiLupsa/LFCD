@@ -1,3 +1,4 @@
+
 class FiniteAutomata:
 
     def __init__(self, states: list, alphabet: list, initialState, finals: list, transitions: dict):
@@ -13,16 +14,17 @@ class FiniteAutomata:
                 return False
         return True
 
+
     def isAccepted(self, sequence):
         if self.isDFA():
-            for current in self.initialState:
-                for symbol in sequence:
-                    if (current, symbol) in self.transitions.keys():
+            current = self.initialState
+            for symbol in sequence:
+                if(symbol!=" "):
+                    if (current, symbol) in list(self.transitions.keys()):
                         current = self.transitions[(current, symbol)][0]
                     else:
-                        continue
-                if current in self.finals:
-                    return True
+                        return False
+            return current in self.finals
         return False
 
     def __str__(self):
