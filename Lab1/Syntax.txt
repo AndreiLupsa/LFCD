@@ -2,11 +2,11 @@
         The words - predefined tokens are specified between " and ":  
   
 a) Sintactical rules:
-    program::= "incepe" cmpdstmt
+    program::= "incepe" stmtlist
 
     declaration ::= type identifier
 
-    type::="caracter"|"intreg"|"mare"|"array"
+    type::="caracter"|"intreg"|"mare"|"intregSir|rational"
 
     declist ::= declaration | declaration {"," identifier}
 
@@ -16,15 +16,17 @@ a) Sintactical rules:
 
     stmtlist::=stmt | stmt ; stmtlist
 
-    stmt ::= simplstmt | structstmt
+    stmt ::= simplstmt | structstmt 
 
-    simplstmt ::= assignstmt | iostmt
+    simplstmt ::= assignstmt | iostmt 
 
-    structstmt ::= ifstmt | whilestmt | cmpdstmt
+    structstmt ::= ifstmt | whilestmt | forstmt
 
-    ifstmt ::= "daca(" condition ")" stmt ["else" stmt]
+    ifstmt ::= "daca(" condition ")" stmt ["altfel" stmt]
 
     whilestmt ::= "cat(" condition ")" stmt
+
+    forstmt ::= "pentru (" assignstmt "," condition "," expression ")" { stmtlist }
 
     condition ::= expression RELATION expression | condition {("si"|"sau") condition}
 
@@ -34,9 +36,9 @@ a) Sintactical rules:
     
     factor ::= "(" expression ")" | IDENTIFIER
 
+
 Conditions:
 i) Identifiers: no more than 256 characters
-ii)Constant for intreg: 10 digits
-                intreg_virgula:10digits , 5 digits
+
 
 

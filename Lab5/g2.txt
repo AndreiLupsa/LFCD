@@ -1,0 +1,4 @@
+nonterminals=program declaration type declist iostmt assignstmt stmtlist stmt simplstmt structstmt ifstmt whilestmt condition expression term factor SISAU forstmt
+alphabet=intreg intregSir incepe citeste daca si afiseaza altfel sau IDENTIFIER pentru rational cat opreste cat ; , ( ) [ ] { } <== + RELATION *
+initial_state=program
+productions=program->incepe { stmtlist } ~ stmtlist->stmt | stmt ; stmtlist ~ stmt->simplstmt | structstmt ~ simplstmt->assignstmt | iostmt ~ assignstmt->IDENTIFIER <== expression ~ expression->expression + term | term ~ term->term * factor | factor ~ factor->( expression ) | IDENTIFIER ~ iostmt->citeste ( IDENTIFIER ) | afiseaza ( IDENTIFIER ) ~ structstmt->ifstmt | forstmt ~ ifstmt->daca ( condition ) stmt | daca ( condition ) stmt altfel stmt ~ condition->expression RELATION expression | condition SISAU condition ~ SISAU->si | sau ~ forstmt->pentru ( assignstmt , condition , expression ) { stmtlist }

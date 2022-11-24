@@ -26,7 +26,7 @@ class Grammar:
 
             self._properties.properties["productions"].append(new_pr)
 
-    
+        print(self.check_CFG())
 
     @property
     def nonterminals(self):
@@ -46,9 +46,9 @@ class Grammar:
         return self._properties.properties["productions"]
     @property
     def str_productions(self):
-        local_list=[]
+        local_list=""
         for elem in self._properties.properties["productions"]:
-            local_list.append(str(elem))
+            local_list += str(elem) + "\n"
         return local_list
             
     @property
@@ -61,26 +61,30 @@ class Grammar:
     
     def check_CFG(self):
 
-        check_inital=False
+        check_initial=False
 
         for pr in self._properties.properties["productions"]:
 
             if self._properties.properties["initial_state"] in pr.id:
-                check_inital=True
-            if len(pr.id)>1:
+                check_initial=True
+            if len(pr.id)>1 or pr.id[0] not in self._properties.properties["nonterminals"]:
+                print("Aici")#left side
                 return False
-        if not check_inital:
+            for elem in pr.list:
+                for elem2 in elem:
+                    if elem2 not in self._properties.properties["alphabet"] and elem2 not in self._properties.properties["nonterminals"]:
+                        print(elem2)
+                        return False
+        if not check_initial:
             return False
+        return True
         
     def __str__(self):
         return("non-terminals: "+str(self.nonterminals)+"\n"+
             "alphabet: "+str(self.alphabet)+"\n"+
-            "productions: "+str(self.str_productions)+"\n"+
-            "initial_state: "+str(self.initial_state))
-        
-        
-
-            
+            "initial_state: "+str(self.initial_state)+"\n"
+            "productions:\n"+str(self.str_productions)+"\n"
+            )           
 
 
 class Production:
@@ -105,4 +109,4 @@ class Production:
     def list(self):
         return self._list
     
-print(str(Grammar("Lab5/g1.txt")))
+print(str(Grammar("Lab5/g2.txt")))
