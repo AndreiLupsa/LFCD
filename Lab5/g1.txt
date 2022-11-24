@@ -1,0 +1,4 @@
+nonterminals=E
+alphabet=a + * ( )
+productions=E->E + E|E * E|( E )|a
+initial_state=E
