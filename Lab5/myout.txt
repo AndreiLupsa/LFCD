@@ -1,0 +1,79 @@
+q 0
+[]
+['program']
+---expand---
+q 0
+[('program', 0)]
+['incepe', '{', 'stmtlist', '}']
+---advance---
+q 1
+[('program', 0), 'incepe']
+['{', 'stmtlist', '}']
+---advance---
+q 2
+[('program', 0), 'incepe', '{']
+['stmtlist', '}']
+---expand---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0)]
+['stmt', '}']
+---expand---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0)]
+['simplstmt', '}']
+---expand---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0)]
+['assignstmt', '}']
+---expand---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0), ('assignstmt', 0)]
+['IDENTIFIER', '<==', 'expression', '}']
+---momentary insuccess---
+b 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0), ('assignstmt', 0)]
+['IDENTIFIER', '<==', 'expression', '}']
+---another try---
+b 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0)]
+['assignstmt', '}']
+---another try---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1)]
+['iostmt', '}']
+---expand---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 0)]
+['citeste', '(', 'IDENTIFIER', ')', '}']
+---momentary insuccess---
+b 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 0)]
+['citeste', '(', 'IDENTIFIER', ')', '}']
+---another try---
+q 2
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1)]
+['afiseaza', '(', 'IDENTIFIER', ')', '}']
+---advance---
+q 3
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza']
+['(', 'IDENTIFIER', ')', '}']
+---advance---
+q 4
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(']
+['IDENTIFIER', ')', '}']
+---advance---
+q 5
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER']
+[')', '}']
+---advance---
+q 6
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER', ')']
+['}']
+---advance---
+q 7
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER', ')', '}']
+[]
+---success---
+[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER', ')', '}']
+-------RESULT:-------
+Sequence is accepted!

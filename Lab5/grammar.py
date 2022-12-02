@@ -51,11 +51,10 @@ class Grammar:
             local_list += str(elem) + "\n"
         return local_list
             
-    @property
     def productions_for_id(self,id_):
         local_list=[]
         for pr in self._properties.properties["productions"]:
-            if(pr.id==id_):
+            if(pr.id[0]==id_):
                 local_list.append(pr)
         return local_list
     
@@ -109,4 +108,3 @@ class Production:
     def list(self):
         return self._list
     
-print(str(Grammar("Lab5/g2.txt")))
