@@ -1,7 +1,5 @@
-incepe
-{
-afiseaza
-(
-IDENTIFIER
-)
-}
+a
+a
+c
+b
+c

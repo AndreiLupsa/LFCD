@@ -1,79 +1,163 @@
 q 0
 []
-['program']
+['S']
 ---expand---
 q 0
-[('program', 0)]
-['incepe', '{', 'stmtlist', '}']
+[('S', 0)]
+['a', 'S', 'b', 'S']
 ---advance---
 q 1
-[('program', 0), 'incepe']
-['{', 'stmtlist', '}']
+[('S', 0), 'a']
+['S', 'b', 'S']
+---expand---
+q 1
+[('S', 0), 'a', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S']
 ---advance---
 q 2
-[('program', 0), 'incepe', '{']
-['stmtlist', '}']
+[('S', 0), 'a', ('S', 0), 'a']
+['S', 'b', 'S', 'b', 'S']
 ---expand---
 q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0)]
-['stmt', '}']
----expand---
-q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0)]
-['simplstmt', '}']
----expand---
-q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0)]
-['assignstmt', '}']
----expand---
-q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0), ('assignstmt', 0)]
-['IDENTIFIER', '<==', 'expression', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S', 'b', 'S']
 ---momentary insuccess---
 b 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0), ('assignstmt', 0)]
-['IDENTIFIER', '<==', 'expression', '}']
----another try---
-b 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 0)]
-['assignstmt', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S', 'b', 'S']
 ---another try---
 q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1)]
-['iostmt', '}']
----expand---
-q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 0)]
-['citeste', '(', 'IDENTIFIER', ')', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 1)]
+['a', 'S', 'b', 'S', 'b', 'S']
 ---momentary insuccess---
 b 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 0)]
-['citeste', '(', 'IDENTIFIER', ')', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 1)]
+['a', 'S', 'b', 'S', 'b', 'S']
 ---another try---
 q 2
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1)]
-['afiseaza', '(', 'IDENTIFIER', ')', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2)]
+['c', 'b', 'S', 'b', 'S']
 ---advance---
 q 3
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza']
-['(', 'IDENTIFIER', ')', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c']
+['b', 'S', 'b', 'S']
 ---advance---
 q 4
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(']
-['IDENTIFIER', ')', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b']
+['S', 'b', 'S']
+---expand---
+q 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S']
+---momentary insuccess---
+b 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S']
+---another try---
+q 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 1)]
+['a', 'S', 'b', 'S']
+---momentary insuccess---
+b 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 1)]
+['a', 'S', 'b', 'S']
+---another try---
+q 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 2)]
+['c', 'b', 'S']
 ---advance---
 q 5
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER']
-[')', '}']
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 2), 'c']
+['b', 'S']
+---momentary insuccess---
+b 5
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 2), 'c']
+['b', 'S']
+---back---
+b 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b', ('S', 2)]
+['c', 'b', 'S']
+---another try---
+b 4
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c', 'b']
+['S', 'b', 'S']
+---back---
+b 3
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2), 'c']
+['b', 'S', 'b', 'S']
+---back---
+b 2
+[('S', 0), 'a', ('S', 0), 'a', ('S', 2)]
+['c', 'b', 'S', 'b', 'S']
+---another try---
+b 2
+[('S', 0), 'a', ('S', 0), 'a']
+['S', 'b', 'S', 'b', 'S']
+---back---
+b 1
+[('S', 0), 'a', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S']
+---another try---
+q 1
+[('S', 0), 'a', ('S', 1)]
+['a', 'S', 'b', 'S']
 ---advance---
-q 6
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER', ')']
-['}']
+q 2
+[('S', 0), 'a', ('S', 1), 'a']
+['S', 'b', 'S']
+---expand---
+q 2
+[('S', 0), 'a', ('S', 1), 'a', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S']
+---momentary insuccess---
+b 2
+[('S', 0), 'a', ('S', 1), 'a', ('S', 0)]
+['a', 'S', 'b', 'S', 'b', 'S']
+---another try---
+q 2
+[('S', 0), 'a', ('S', 1), 'a', ('S', 1)]
+['a', 'S', 'b', 'S']
+---momentary insuccess---
+b 2
+[('S', 0), 'a', ('S', 1), 'a', ('S', 1)]
+['a', 'S', 'b', 'S']
+---another try---
+q 2
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2)]
+['c', 'b', 'S']
 ---advance---
-q 7
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER', ')', '}']
+q 3
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c']
+['b', 'S']
+---advance---
+q 4
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b']
+['S']
+---expand---
+q 4
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 0)]
+['a', 'S', 'b', 'S']
+---momentary insuccess---
+b 4
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 0)]
+['a', 'S', 'b', 'S']
+---another try---
+q 4
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 1)]
+['a', 'S']
+---momentary insuccess---
+b 4
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 1)]
+['a', 'S']
+---another try---
+q 4
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 2)]
+['c']
+---advance---
+q 5
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 2), 'c']
 []
 ---success---
-[('program', 0), 'incepe', '{', ('stmtlist', 0), ('stmt', 0), ('simplstmt', 1), ('iostmt', 1), 'afiseaza', '(', 'IDENTIFIER', ')', '}']
--------RESULT:-------
+[('S', 0), 'a', ('S', 1), 'a', ('S', 2), 'c', 'b', ('S', 2), 'c']
+########RESULT:########
 Sequence is accepted!
