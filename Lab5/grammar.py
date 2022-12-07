@@ -28,6 +28,7 @@ class Grammar:
 
         print(self.check_CFG())
 
+
     @property
     def nonterminals(self):
         return self._properties.properties["nonterminals"]
@@ -51,6 +52,7 @@ class Grammar:
             local_list += str(elem) + "\n"
         return local_list
             
+
     def productions_for_id(self,id_):
         local_list=[]
         for pr in self._properties.properties["productions"]:
@@ -58,6 +60,7 @@ class Grammar:
                 local_list.append(pr)
         return local_list
     
+
     def check_CFG(self):
 
         check_initial=False
@@ -67,13 +70,14 @@ class Grammar:
             if self._properties.properties["initial_state"] in pr.id:
                 check_initial=True
             if len(pr.id)>1 or pr.id[0] not in self._properties.properties["nonterminals"]:
-                print("Aici")#left side
                 return False
+
             for elem in pr.list:
                 for elem2 in elem:
                     if elem2 not in self._properties.properties["alphabet"] and elem2 not in self._properties.properties["nonterminals"]:
                         print(elem2)
                         return False
+
         if not check_initial:
             return False
         return True
@@ -99,6 +103,7 @@ class Production:
 
     def __str__(self):
         return f"{self._id} -> {self._list}"
+    
     
     @property
     def id(self):
