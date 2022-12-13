@@ -14,8 +14,8 @@ class ParserRecursiveDescendent:
         file.write("")
         file.close()
 
-        print(self.sequence)
-        print(self.grammar)
+        # print(self.sequence)
+        # print(self.grammar)
 
         # alpha - working stack, stores the way the parse is build
         self.working_stack = []
@@ -42,12 +42,18 @@ class ParserRecursiveDescendent:
 
             if sequence_file == "pif.out":
 
-                line = file.readline()[1:-1]
+                line = file.readline()[2:-1]
 
                 while line:
-                    elems_line = line.split(",").strip()
-                    sequence.append(elems_line[0][1:-1])
-                    line = file.readline()
+                    
+                    if line[0] != ',':
+                        elems_line = line.split(",")
+                        sequence.append(elems_line[0][:-1])
+                    else:
+                        sequence.append(',')
+
+                    line = file.readline()[2:-1]
+
             else:
 
                 line = file.readline()
@@ -55,6 +61,7 @@ class ParserRecursiveDescendent:
                     sequence.append(line[0:-1])
                     line = file.readline()
 
+        print(sequence)
         return sequence
 
 
@@ -78,7 +85,7 @@ class ParserRecursiveDescendent:
         (q, i, alpha, A beta) ⊢ (q, i, alpha A1, gamma1 beta)
         '''
 
-        print("~~~~expand~~~~")
+        # print("~~~~expand~~~~")
         self.write_in_output_file("~~~~expand~~~~")
 
         non_terminal = self.input_stack.pop(0) # pop A from beta
@@ -86,9 +93,9 @@ class ParserRecursiveDescendent:
 
         new_production = self.grammar.productions_for_id(non_terminal)[0]
 
-        print("1"+str(self.input_stack))
+        # print("1"+str(self.input_stack))
         self.input_stack = new_production.list[0] + self.input_stack
-        print("2"+str(self.input_stack))
+        # print("2"+str(self.input_stack))
         
 
     def advance(self):
@@ -97,7 +104,7 @@ class ParserRecursiveDescendent:
         (q, i, alpha, a_i beta) ⊢ (q, i+1, alpha a_i, beta)
         '''
 
-        print("~~~~advance~~~~")
+        # print("~~~~advance~~~~")
         self.write_in_output_file("~~~~advance~~~~")
 
         self.working_stack.append(self.input_stack.pop(0))
@@ -107,7 +114,7 @@ class ParserRecursiveDescendent:
     def momentary_insuccess(self):
         # When head of input stack is a terminal != current symbol from input
 
-        print("~~~~momentary insuccess~~~~")
+        # print("~~~~momentary insuccess~~~~")
         self.write_in_output_file("~~~~momentary insuccess~~~~")
 
         self.state = "b"
@@ -119,7 +126,7 @@ class ParserRecursiveDescendent:
         (b, i, alpha a, beta) ⊢ (b, i-1, alpha, a beta)
         '''
 
-        print("~~~~back~~~~")
+        # print("~~~~back~~~~")
         self.write_in_output_file("~~~~back~~~~")
 
         new_elem = self.working_stack.pop()
@@ -129,7 +136,7 @@ class ParserRecursiveDescendent:
 
     def success(self):
 
-        print("~~~~success~~~~")
+        # print("~~~~success~~~~")
         self.write_in_output_file("~~~~success~~~~")
 
         self.state = "f"
@@ -140,6 +147,7 @@ class ParserRecursiveDescendent:
         self.write_in_output_file("~~~~another try~~~~")
         last = self.working_stack.pop()  # (last, production_nr)
 
+        # print(last)
         if last[1] + 1 < len(self.grammar.productions_for_id(last[0])[0].list):
 
             self.state = "q"
@@ -160,7 +168,7 @@ class ParserRecursiveDescendent:
 
         elif self.index == 0 and last[0] == self.grammar.initial_state: 
 
-            print(self.index)
+            # print(self.index)
             self.state = "e"
 
         else: #go back

@@ -1,15 +1,21 @@
-incepe{
-intreg n, i, m<==0, stop<==0  ;
-afiseaza("Da un nr:");
-citeste(n);  
-m<==n/2; 
-pentru(i<==2, i <= m, i++){  
-    daca(n % i = 0)  {
-        afiseaza("nr nu-i prim",1);  
-        stop<==1;
-        opreste;
+incepe
+{
+    intreg n, i, m, stop;
+    m<==0;
+    stop<==0;
+    afiseaza("Da un nr:");
+    citeste(n);  
+    m<==n/2; 
+    pentru(i<==2, i <= m, i<==i+1)
+    {  
+        daca(n % i = 0)
+        {
+            afiseaza("nr nu-i prim");  
+            stop<==1;
         } 
     }    
-daca (stop=0)  {
-    afiseaza("nr prim") }
+    daca (stop=0)  
+    {
+        afiseaza("nr prim");
+    }
 }

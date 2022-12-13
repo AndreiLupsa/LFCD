@@ -3,8 +3,8 @@ import re
 import sys
 from Utils import Utils
 
-reserved_words = ["incepe", "intreg", "citeste", "daca", "si", "afiseaza","radical","rational"]
-reserved_ops = [",","!=" , "<", "<=", ">", ">=","<==","[", "]", "{", "}", ";", ":", "(", ")","%","+","/","="]
+reserved_words = ["incepe", "intreg", "citeste", "daca", "si", "afiseaza","radical","rational", "pentru"]
+reserved_ops = [",", "!=" , "<", "<=", ">", ">=","<==","[", "]", "{", "}", ";", ":", "(", ")","%","+","/","="]
 
 class PIF:
     def __init__(self):
@@ -15,6 +15,7 @@ class PIF:
     
     def __str__(self):
         return "\n".join(map(str, self.__data))
+
     def __getitem__(self,token):
         return self.__data[token]
     
@@ -76,7 +77,7 @@ def lexical_analyser(path,finite_automata):
 
 if __name__ == "__main__":
     finite_automata = Utils.readFromFile('C:\LFCD\Lab4\FAInt.in')
-    st, pif = lexical_analyser('C:\LFCD\Lab3\p2.txt',finite_automata)
+    st, pif = lexical_analyser('C:\LFCD\Lab3\p1.txt',finite_automata)
 
     with open("st.out", "w+") as f:
         f.write(str(st))
