@@ -76,13 +76,14 @@ def lexical_analyser(path,finite_automata):
 
 
 if __name__ == "__main__":
-    finite_automata = Utils.readFromFile('C:\LFCD\Lab4\FAInt.in')
-    st, pif = lexical_analyser('C:\LFCD\Lab3\p1.txt',finite_automata)
-
+    finite_automata = Utils.readFromFile('Lab4/FAInt.in')
+    st, pif = lexical_analyser('Lab3/p1.txt',finite_automata)
+    # st, pif = lexical_analyser('Lab3/p2.txt',finite_automata)
+    
     with open("st.out", "w+") as f:
         f.write(str(st))
 
-    with open("Lab4/pif.out", "w+") as f:
+    with open("pif.out", "w+") as f:
         f.write(str(pif))
 
     print("Valid program!")
