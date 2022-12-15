@@ -331,3 +331,67 @@ class ParserRecursiveDescendent:
         
         return table.draw()
 
+
+def test():
+
+    # Input: a a c b c
+    # nonterminals=S
+    # alphabet=a b c
+    # productions=S->a S b S|a S|c
+    # initial_state=S
+
+    pr=ParserRecursiveDescendent("Lab5/g1.txt","seq.txt","Lab5/out1.txt")
+
+    assert pr.input_stack == ['S']
+
+    pr.expand()
+
+    assert pr.working_stack == [('S', 0)]
+    assert pr.input_stack == ['a', 'S', 'b', 'S']
+
+    pr.advance()
+
+    assert pr.working_stack == [('S', 0), 'a']
+    assert pr.input_stack == ['S', 'b', 'S']
+
+    pr.expand()
+
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0)]
+    assert pr.input_stack == ['a', 'S', 'b', 'S', 'b', 'S']
+
+    pr.advance()
+
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0), 'a']
+    assert pr.input_stack == ['S', 'b', 'S', 'b', 'S']
+
+    pr.expand()
+
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0), 'a', ('S', 0)]
+    assert pr.input_stack == ['a', 'S', 'b', 'S', 'b', 'S', 'b', 'S']
+
+    pr.momentary_insuccess()
+
+    assert pr.state == 'b'
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0), 'a', ('S', 0)]
+    assert pr.input_stack == ['a', 'S', 'b', 'S', 'b', 'S', 'b', 'S']
+
+    pr.another_try()
+
+    assert pr.state == 'q'
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0), 'a', ('S', 1)]
+    assert pr.input_stack == ['a', 'S', 'b', 'S', 'b', 'S']
+
+    pr.momentary_insuccess()
+
+    assert pr.state == 'b'
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0), 'a', ('S', 1)]
+    assert pr.input_stack == ['a', 'S', 'b', 'S', 'b', 'S']
+
+    pr.another_try()
+
+    assert pr.state == 'q'
+    assert pr.working_stack == [('S', 0), 'a', ('S', 0), 'a', ('S', 2)]
+    assert pr.input_stack == ['c', 'b', 'S', 'b', 'S']
+    
+
+test()

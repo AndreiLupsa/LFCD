@@ -77,8 +77,8 @@ def lexical_analyser(path,finite_automata):
 
 if __name__ == "__main__":
     finite_automata = Utils.readFromFile('Lab4/FAInt.in')
-    st, pif = lexical_analyser('Lab3/p1.txt',finite_automata)
-    # st, pif = lexical_analyser('Lab3/p2.txt',finite_automata)
+    st, pif = lexical_analyser('Lab4/p1.txt',finite_automata)
+    # st, pif = lexical_analyser('Lab4/p2.txt',finite_automata)
     
     with open("st.out", "w+") as f:
         f.write(str(st))
