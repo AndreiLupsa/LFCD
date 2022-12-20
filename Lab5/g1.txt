@@ -1,4 +1,4 @@
-nonterminals=S
+nonterminals=S A
 alphabet=a b c
-productions=S->a S b S|a S|c
+productions= S->a A ~ A-> b A|c
 initial_state=S

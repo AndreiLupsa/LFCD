@@ -1,5 +1,7 @@
 from grammar import Grammar
 from texttable import Texttable
+
+
 class ParserRecursiveDescendent:
 
     def __init__(self, grammar_file, sequence_file, out_file):
@@ -25,13 +27,12 @@ class ParserRecursiveDescendent:
 
         # q - normal state, b - back state, f - final state, e - error state
         self.state = "q"
-        
+
         # i - position of current symbol in input sequenc
         self.index = 0
 
         # representation - parsing tree
         self.tree = []
-
 
     # reads the input sequence from the given file
     def read_sequence(self, sequence_file):
@@ -45,7 +46,7 @@ class ParserRecursiveDescendent:
                 line = file.readline()[2:-1]
 
                 while line:
-                    
+
                     if line[0] != ',':
                         elems_line = line.split(",")
                         sequence.append(elems_line[0][:-1])
@@ -64,12 +65,10 @@ class ParserRecursiveDescendent:
         print(sequence)
         return sequence
 
-
     def write_all_data(self):
 
         with open(self.output_file, 'a') as file:
             file.write(f'{str(self.state)} {str(self.index)}\n{str(self.working_stack)}\n{str(self.input_stack)}\n')
-
 
     def write_in_output_file(self, message, final=False):
 
@@ -77,7 +76,6 @@ class ParserRecursiveDescendent:
             if final:
                 file.write("~~~~RESULT:~~~~\n")
             file.write(message + "\n")
-
 
     def expand(self):
         '''
@@ -88,15 +86,14 @@ class ParserRecursiveDescendent:
         # print("~~~~expand~~~~")
         self.write_in_output_file("~~~~expand~~~~")
 
-        non_terminal = self.input_stack.pop(0) # pop A from beta
-        self.working_stack.append((non_terminal, 0)) # alpha -> alpha A1
+        non_terminal = self.input_stack.pop(0)  # pop A from beta
+        self.working_stack.append((non_terminal, 0))  # alpha -> alpha A1
 
         new_production = self.grammar.productions_for_id(non_terminal)[0]
 
         # print("1"+str(self.input_stack))
         self.input_stack = new_production.list[0] + self.input_stack
         # print("2"+str(self.input_stack))
-        
 
     def advance(self):
         '''
@@ -110,7 +107,6 @@ class ParserRecursiveDescendent:
         self.working_stack.append(self.input_stack.pop(0))
         self.index += 1
 
-
     def momentary_insuccess(self):
         # When head of input stack is a terminal != current symbol from input
 
@@ -118,7 +114,6 @@ class ParserRecursiveDescendent:
         self.write_in_output_file("~~~~momentary insuccess~~~~")
 
         self.state = "b"
-
 
     def back(self):
         '''
@@ -133,14 +128,12 @@ class ParserRecursiveDescendent:
         self.input_stack = [new_elem] + self.input_stack
         self.index -= 1
 
-
     def success(self):
 
         # print("~~~~success~~~~")
         self.write_in_output_file("~~~~success~~~~")
 
         self.state = "f"
-
 
     def another_try(self):
 
@@ -155,9 +148,10 @@ class ParserRecursiveDescendent:
             # put working next production for the symbol
             new_tuple = (last[0], last[1] + 1)
             self.working_stack.append(new_tuple)
-            
+
             # change production on top input
-            length_last_production = len(self.grammar.productions_for_id(last[0])[0].list[last[1]]) # how many to delete
+            length_last_production = len(
+                self.grammar.productions_for_id(last[0])[0].list[last[1]])  # how many to delete
 
             # delete last production from input
             self.input_stack = self.input_stack[length_last_production:]
@@ -166,12 +160,12 @@ class ParserRecursiveDescendent:
             new_production = self.grammar.productions_for_id(last[0])[0].list[last[1] + 1]
             self.input_stack = new_production + self.input_stack
 
-        elif self.index == 0 and last[0] == self.grammar.initial_state: 
+        elif self.index == 0 and last[0] == self.grammar.initial_state:
 
             # print(self.index)
             self.state = "e"
 
-        else: #go back
+        else:  # go back
 
             # change production on top input
             length_last_production = len(self.grammar.productions_for_id(last[0])[0].list[last[1]])
@@ -180,13 +174,11 @@ class ParserRecursiveDescendent:
             self.input_stack = self.input_stack[length_last_production:]
             self.input_stack = [last[0]] + self.input_stack
 
-
     def print_working(self):
         # prints the working stack to the screen and in the output file
 
         print(self.working_stack)
         self.write_in_output_file(str(self.working_stack))
-
 
     def run(self, w):
 
@@ -205,7 +197,7 @@ class ParserRecursiveDescendent:
                 elif self.input_stack[0] in self.grammar.nonterminals:
                     # When head of input stack is a non terminal
                     self.expand()
-                    
+
                 elif self.index < len(w) and self.input_stack[0] == w[self.index]:
                     self.advance()
 
@@ -230,7 +222,6 @@ class ParserRecursiveDescendent:
         self.write_in_output_file(message, True)
         self.create_parsing_tree()
 
-
     def create_parsing_tree(self):
         # creates the parsing tree
 
@@ -240,94 +231,94 @@ class ParserRecursiveDescendent:
 
         for index in range(0, len(self.working_stack)):
             # iterates in the working stack
-            
+
             if (index == 0):
 
-                local_table.append((local_index,self.working_stack[index],fatherStack[-1], -1))
+                local_table.append((local_index, self.working_stack[index], fatherStack[-1], -1))
                 fatherStack.pop()
                 fatherStack.insert(0, local_index)
-                local_index+=1
-                father=fatherStack[0]
-                productions = self.grammar.productions_for_id(self.working_stack[index][0])[0].list[self.working_stack[index][1]]
+                local_index += 1
+                father = fatherStack[0]
+                productions = self.grammar.productions_for_id(self.working_stack[index][0])[0].list[
+                    self.working_stack[index][1]]
 
                 for newIndex in range(len(productions)):
-                    
-                    if(newIndex==0):
+
+                    if (newIndex == 0):
 
                         if (productions[0] in self.grammar.alphabet):
-                            whatToAdd=productions[0]
+                            whatToAdd = productions[0]
                             local_table.append((local_index, whatToAdd, father, -1))
                         else:
-                            whatToAdd=(productions[0], self.working_stack[index][1])
+                            whatToAdd = (productions[0], self.working_stack[index][1])
                             local_table.append((local_index, whatToAdd, father, -1))
                             fatherStack.append(local_index)
-                        
-                        local_index+=1
+
+                        local_index += 1
 
                     else:
 
                         if (productions[newIndex] in self.grammar.alphabet):
-                            whatToAdd=productions[newIndex]
-                            local_table.append((local_index, whatToAdd, father, local_index-1))
+                            whatToAdd = productions[newIndex]
+                            local_table.append((local_index, whatToAdd, father, local_index - 1))
                         else:
-                            whatToAdd=(productions[newIndex], self.working_stack[index][1])
-                            local_table.append((local_index, whatToAdd, father, local_index-1))
+                            whatToAdd = (productions[newIndex], self.working_stack[index][1])
+                            local_table.append((local_index, whatToAdd, father, local_index - 1))
                             fatherStack.append(local_index)
-                            
-                        local_index+=1
+
+                        local_index += 1
 
                 fatherStack = fatherStack[1:]
 
             elif (type(self.working_stack[index]) == tuple):
 
-                productions = self.grammar.productions_for_id(self.working_stack[index][0])[0].list[self.working_stack[index][1]]
-                father=fatherStack[0]
-                fatherStack=fatherStack[1:]
+                productions = self.grammar.productions_for_id(self.working_stack[index][0])[0].list[
+                    self.working_stack[index][1]]
+                father = fatherStack[0]
+                fatherStack = fatherStack[1:]
 
                 newFathers = []
 
                 for newIndex in range(len(productions)):
 
-                    if(newIndex==0):
+                    if (newIndex == 0):
 
                         if (productions[0] in self.grammar.alphabet):
-                            whatToAdd=productions[0]
+                            whatToAdd = productions[0]
                             local_table.append((local_index, whatToAdd, father, -1))
                         else:
-                            whatToAdd=(productions[0], self.working_stack[index][1])
+                            whatToAdd = (productions[0], self.working_stack[index][1])
                             local_table.append((local_index, whatToAdd, father, -1))
                             newFathers.append(local_index)
-                        
-                        local_index+=1
+
+                        local_index += 1
 
                     else:
 
                         if (productions[newIndex] in self.grammar.alphabet):
-                            whatToAdd=productions[newIndex]
-                            local_table.append((local_index, whatToAdd, father, local_index-1))
+                            whatToAdd = productions[newIndex]
+                            local_table.append((local_index, whatToAdd, father, local_index - 1))
                         else:
-                            whatToAdd=(productions[newIndex], self.working_stack[index][1])
-                            local_table.append((local_index, whatToAdd, father, local_index-1))
+                            whatToAdd = (productions[newIndex], self.working_stack[index][1])
+                            local_table.append((local_index, whatToAdd, father, local_index - 1))
                             newFathers.append(local_index)
-                            
-                        local_index+=1
-                    
+
+                        local_index += 1
+
                 fatherStack = newFathers + fatherStack
-                
+
             else:
                 continue
 
             self.tree = local_table
 
-
     def __str__(self):
-        
+
         table = Texttable(1200)
 
         table.header(array=["INDEX", "ID", "PARENT", "LS"])
 
         for row in self.tree:
             table.add_row(array=[row[0], row[1], row[2], row[3]])
-        
-        return table.draw()
 
+        return table.draw()
